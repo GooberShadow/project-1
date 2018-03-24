@@ -1,0 +1,5 @@
+#!/bin/bash
+
+#using find and piping sed, using reg expressions to format
+find $dir ! -path .  -not -path '"//\."' | sed -e 's;[^/]*/; /;g;s;/ ;|\t  ;g;s;^ /$;.;;s;/;|--------;g'
+

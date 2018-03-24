@@ -1,0 +1,83 @@
+#!/bin/bash
+
+function fileinfo () {
+#If not exist
+if [ ! -e $1 ]
+then
+	echo "The file does not exist"
+	return 0
+fi
+#if its a file
+if [ -f $1 ]
+then
+	echo "$1 is a file"
+	if [ -r $1 ]
+	then
+		echo "Read Permission on $1"
+	fi
+	if [ -w $1 ]
+	then
+		echo "Write Permission for $1"
+	fi
+	if [ -x $1 ]
+	then
+		echo "Execute Permission for $1"
+	fi
+	if [ -O $1 ]
+	then
+		echo "you are owner of $1"
+	fi
+#if its a dir
+elif [ -d $1 ]
+then
+	echo "$1 is a directory"
+	if [ -r $1 ]
+	then
+		echo "Read Permission on $1"
+	fi
+	if [ -w $1 ]
+	then
+		echo "Write Permission for $1"
+	fi
+	if [ -x $1 ]
+	then
+		echo "Execute Permission for $1"
+	fi
+	if [ -O $1 ]
+	then
+		echo "You are owner of $1"
+	fi
+#if its neither
+elif [ -e $1 ]
+then
+	echo "$1 is some type of file"
+	if [ -r $1 ]
+	then
+		echo "Read Permission for $1"
+	fi
+	if [ -w $1 ]
+	then
+		echo "Write Permission for $1"
+	fi
+	if [ -x $1 ]
+	then
+		echo "Execute Permission for $1"
+	fi
+	if [ -O $1 ]
+	then
+		echo "You are owner of $1"
+	fi
+fi
+}
+#Exception handling if they dont enter one
+if [ -z $1 ] || [ $1 == "-h" ]
+then
+	echo "You need to enter in at least one file"
+	exit
+fi
+for u in "$@"
+do
+	temp=$(fileinfo "$u")
+	echo -e "$temp"
+	echo "-------------"
+done

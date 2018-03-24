@@ -1,0 +1,40 @@
+#!/bin/bash
+declare -a sortingArray
+file=$1
+size=0
+swapCheck=1
+
+#Adds sorted
+if [ -f $1".sorted" ]
+then
+	rm $1".sorted"
+fi
+
+while IFS='' read -r line
+do
+	sortingArray[$size]=$line
+	size=$(( $size + 1 ))
+done < "$1"
+
+#bubblesort
+until [ $swapCheck -eq 0 ]
+do
+	swapCheck=0
+	i=0
+	while [ $i -lt $(( size - 1 )) ]
+	do
+		if [ ${sortingArray[$i]} -gt ${sortingArray[$i+1]} ]
+		then
+			temp=${sortingArray[$i]}
+			sortingArray[$i]=${sortingArray[$i+1]}
+			sortingArray[$i+1]=$temp
+			swapCheck=1
+		fi
+		i=$(( $i + 1 ))
+	done
+done
+
+for i in ${!sortingArray[@]}
+do
+	echo ${sortingArray[$i]} >> "$file"".sorted"
+done
