@@ -76,10 +76,11 @@ else
 	printf "%s %s %.8s\n", $1, $2, $3
 	count = 0;
 }
-}' users.txt7 > users.txt
+}' users.txt7 > users.txt8
 
-#FORMATTING
-#awk '{}'
+#FORMATTING so that it is First Last username
+awk '{ printf (tolower($0)"\n") }' users.txt8 > users.txt9
+awk '{for (i=1;i<NF;i++){ $i=toupper(substr($i,1,1)) substr($i,2) }}1' users.txt9 > users.txt
 
 #Clearing unnecessary files
 rm users.txt1
@@ -89,4 +90,6 @@ rm users.txt4
 rm users.txt5
 rm users.txt6
 rm users.txt7
+rm users.txt8
+rm users.txt9
 
