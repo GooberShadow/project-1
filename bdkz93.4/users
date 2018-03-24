@@ -1,0 +1,92 @@
+#!/bin/bash
+
+#append users to name file
+if [ $# -gt 0 ]
+then
+	echo "$1 $2 $3 $4 $5" >> names
+fi
+
+#Formatting at the beggining. Removing middle name etc
+awk 'BEGIN { FS = "," };
+{
+if ( NF > 1 )
+	printf "%s %s\n", $2, $1
+else
+	printf "%s\n", $1
+}' names > users.txt1
+
+#ADDS the user name
+awk '{
+if (NF >= 3)
+	printf "%s %s\n", $1, $3
+else
+	printf "%s %s\n", $1, $2
+
+}' users.txt1 > users.txt2
+
+#OPTION 1 LAST NAME
+awk '{ printf "%s %s %.8s\n", $1, $2, $2 }' users.txt2 > users.txt3
+
+#duplicates
+awk 'BEGIN {totalDups = 0 } { if(seen[$0]++) totalDups++}
+END{ printf "There were %d collisions.\n", totalDups }' users.txt3
+
+#OPTION 2 FIRST NAME
+awk ' {
+if (seen[$3]++)
+	printf "%s %s %.8s\n", $1, $2, $1
+else
+	printf "%s %s %.8s\n", $1, $2, $3
+}' users.txt3 > users.txt4
+
+#OPTION 3 FIRST INITIAL LAST NAME
+awk ' {
+if (seen[$3]++)
+	printf "%s %s %.1s%.7s\n", $1, $2, $1, $2
+else
+	printf "%s %s %.8s\n", $1, $2, $3
+}' users.txt4 > users.txt5
+
+#OPTION 4 FIRST NAME + LAST INITIAL
+awk ' {
+if (seen[$3]++)
+	printf "%s %s %.7s%.1s\n", $1, $2, $1, $2
+else
+	printf "%s %s %.8s\n", $1, $2, $3
+}' users.txt5 > users.txt6
+
+#OPTION 5 LAST NAME + FIRST INITIAL
+awk ' {
+if (seen[$3]++)
+	printf "%s %s %.7s%.1s\n", $1, $2, $2, $1
+else
+	printf "%s %s %.8s\n", $1, $2, $3
+}' users.txt6 > users.txt7
+
+#OPTION 6 ADDING NUMBERS
+awk 'BEGIN { count = 0 }
+{
+if (seen[$3]++)
+{
+	count = count + 1;
+	printf "%s %s %.1s%.5s%.2d\n", $1, $2, $1, $2, count
+}
+else
+{
+	printf "%s %s %.8s\n", $1, $2, $3
+	count = 0;
+}
+}' users.txt7 > users.txt
+
+#FORMATTING
+#awk '{}'
+
+#Clearing unnecessary files
+rm users.txt1
+rm users.txt2
+rm users.txt3
+rm users.txt4
+rm users.txt5
+rm users.txt6
+rm users.txt7
+
