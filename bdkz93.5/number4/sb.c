@@ -5,6 +5,7 @@
 #include <string.h>
 #include <math.h>
 
+//Structure creation
 typedef enum suits { clubs, diamonds, hearty, spades} suit_t;
 typedef struct
 {
@@ -20,6 +21,7 @@ void shuffle(card_t* ptr);
 int compare(const void* num, const void* x);
 void printBitVector(unsigned char bitVec[], int size);
 
+//main
 int main()
 {
 	const int size = ceil(52 / (sizeof(unsigned int) * 8));

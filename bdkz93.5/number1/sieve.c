@@ -15,19 +15,19 @@ int main(){
 	unsigned int array[size];	
 	int i;
 	int count;
-	
+	//Initializes bit vector
 	for(i = 0; i < size; i++)
 	{
 		array[i] = 0;
 	}
-	
+	//Calls functions to perform sieve
 	SieveBit(array);
 	PrintBit(array, 5);
 	printConverted(array, size);
 
 return 0;
 }
-
+//Sets the bit a value. Utilized in SieveBit
 void SetBit(unsigned int A[], int K, int L)
 {
 	int i = K;
@@ -40,7 +40,7 @@ void SetBit(unsigned int A[], int K, int L)
 	A[i] = A[i] | flag;
 	return;
 }
-
+//Check bit for 0 or 1. Utilized in SieveBit
 int TestBit(unsigned int A[], int K, int L)
 {
 	
@@ -57,7 +57,7 @@ int TestBit(unsigned int A[], int K, int L)
 		return 0;
 	}
 }
-
+//Prints it. good for me to test
 void PrintBit(unsigned int arr[], int arrayindex)
 {
 	int i;
@@ -84,7 +84,7 @@ void PrintBit(unsigned int arr[], int arrayindex)
 	}
 	return;
 }
-
+//Actual sieve math operations on bit vectors
 void SieveBit(unsigned int arr[])
 {
 	int i;
@@ -115,7 +115,7 @@ void SieveBit(unsigned int arr[])
 	}
 	return;
 }
-
+//Prints it in proper format with numbers and such
 void printConverted(unsigned int arr[], int arrayIndex)
 {
 	int i;

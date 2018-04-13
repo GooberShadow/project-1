@@ -29,9 +29,6 @@ while(*src != '\0')
 }
 *dest = '\0';
 
-printf("%s\n", str);
-
-
 //White space
 src = dest = str;
 while(*src != '\0')
@@ -45,8 +42,6 @@ while(*src != '\0')
 }
 *dest = '\0';
 
-printf("%s\n", str);
-
 // () symbols right
 src = dest = str;
 while(*src != '\0')
@@ -59,9 +54,6 @@ while(*src != '\0')
 	src++;
 }
 *dest = '\0';
-
-printf("%s\n", str);
-
 
 // ( ) symbols left
 src = dest = str;
@@ -76,24 +68,10 @@ while(*src != '\0')
 }
 *dest = '\0';
 
-printf("%s\n", str);
-/*
-// () symbols right
-src = dest = str;
-while(*src != '\0')
-{
-	if (*src != ' ')
-	{
-		*dest = *src;
-		dest++;
-	}
-	src++;
-}
-*dest = '\0';
+//Now that we have removed the special characters one might include when giving a phone number
+//we can now format it in the proper way we would like to.
 
-printf("%s\n", str);
-*/
-
+//Inserts the - into the correct spot
 char insert = '-';
 char temp;
 char temp2;
@@ -111,5 +89,6 @@ str[9] = temp3;
 str[10] = temp4;
 str[6] = insert;
 
-	printf("(%.3s) %s\n",str, &(str[strlen (str) - 8])); 
+//Prints the phone number including the ( ) around the area code and the hyphen is already in the string	
+printf("(%.3s) %s\n",str, &(str[strlen (str) - 8])); 
 }
