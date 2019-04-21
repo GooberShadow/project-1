@@ -1,0 +1,71 @@
+#FizzBuzz
+
+PATH=/bin:/usr/bin
+
+#Default argument will be 20 if there is none given
+size=${1:-20}
+
+#For loop to loop till the default argument is given
+for((i=1; i<=$size; i++))
+do
+
+#Checks to see if the number is divisible by 15
+if (( ($i % 15) == 0 ))
+then
+	echo "FizzBuzz"
+
+#Checks to see if the number is divisible by 3	
+elif (( ($i % 3) == 0))
+	then
+       		 echo "Fizz"
+
+#Checks to see if the number is divisible by 5
+elif (( ($i % 5) == 0 ))
+then
+        echo "Buzz"
+
+elsergument will be 20 if there is none given
+size=${1:-20}
+
+=1; i<=$size; i++))
+#do
+##
+###Checks to see if the number is divisible by 15
+##if (( ($i % 15) == 0 ))
+##then
+##        echo "FizzBuzz"
+##
+##        #Checks to see if the number is divisible by 3
+##        elif (( ($i % 3) == 0))
+##                then
+##                                 echo "Fizz"
+##
+##                                 #Checks to see if the number is divisible by 5
+##                                 elif (( ($i % 5) == 0 ))
+##                                 then
+##                                         echo "Buzz"
+##
+##For loop to loop till the default argument is given
+#for((i=1; i<=$size; i++))
+#do
+#
+##Checks to see if the number is divisible by 15
+#if (( ($i % 15) == 0 ))
+#then
+#        echo "FizzBuzz"
+#
+#        #Checks to see if the number is divisible by 3
+#        elif (( ($i % 3) == 0))
+#                then
+#                                 echo "Fizz"
+#
+#                                 #Checks to see if the number is divisible by 5
+#                                 elif (( ($i % 5) == 0 ))
+#                                 then
+#                                         ech( "Buzz"
+#
+	echo $i
+fi
+done
+
+

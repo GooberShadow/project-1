@@ -1,0 +1,6 @@
+
+export foobar
+#foobar="Hello"
+echo ${foobar} ; ( foobar="Goodbye" ; echo ${foobar} ) ; echo ${foobar}
+export foobar
+

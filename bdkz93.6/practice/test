@@ -1,0 +1,12 @@
+sum()
+{
+	argument = $1
+	
+	for((i=1; i<=$argument; i++))
+	do
+	total = total + i
+	done
+	echo total
+}
+
+sum 

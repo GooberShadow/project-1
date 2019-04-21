@@ -1,0 +1,7 @@
+#!/user/bin/bash
+
+# Count the number of users on a machine
+
+nusers = 'who | wc -l'
+date + "The number of users on $hostname  "
+

@@ -1,0 +1,51 @@
+#BookInfoScript
+
+PATH=/bin:/usr/bin
+
+#Command line default argument will be 1 if there is none given
+command=${1:-1}
+
+#Checks to see if the user wants to search
+if (( $command == "-f" ))
+then
+	grep -i "$2" books | while read -r line
+	do
+	echo -n "Booktitle: "; echo $line | cut -d \~ -f1
+	echo -n "Author(s): "; echo $line | cut -d \~ -f2
+	echo -n "Publishers: "; echo $line | cut -d \~ -f3
+	echo -n "Year of Publication: "; echo $line | cut -d \~ -f4
+	echo
+	done
+fi
+
+#Checks to see if the user wants to print and save to book_print
+if [ $command == "print" ]
+then
+
+	while IFS='' read -r line
+	do
+		t=$(echo $line | cut -d\~ -f1)
+		echo -n -e "Booktitle:\t\t $t\n" >> book_print
+		t=$(echo $line | cut -d\~ -f2)
+                echo -n -e "Author(s):\t\t $t\n" >> book_print
+                t=$(echo $line | cut -d\~ -f3)
+                echo -n -e "Publishers:\t\t $t\n" >> book_print
+                t=$(echo $line | cut -d\~ -f4)
+                echo -n -e "Year of Publication:\t $t\n" >> book_print
+
+	done < books
+	
+fi
+
+#for loop to allow the user to enter until the command argument is reached 
+for((i=1; i<=$command; i++))
+do
+
+	read -p "Enter a Booktitle > " booktitle
+	read -p "Enter an Author(s) > " author
+	read -p "Enter a Publisher > " publisher
+	read -p "Enter the Year of publication > " year
+
+	echo "$booktitle~$author~$publisher~$year" >> books
+
+done

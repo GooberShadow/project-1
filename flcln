@@ -1,0 +1,9 @@
+#FileClean
+#!/bin/bash
+
+PATH=/bin:/usr/bin
+
+input=${1:-"."}
+
+find "$input" -type f -printf "%s\t%f\n" | sort -n
+find "$input" -type f -size 0 -exec rm -iR '{}' \;

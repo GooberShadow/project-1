@@ -1,0 +1,6 @@
+I have created a makefile that will compile what is needed using command "make"
+Run the program after compiling it by using "./a.out" 
+If you wish to include a file as an argument when running the program you would type "./a.out filename"
+If not then the program will allow you to type from the keyboard until you wish to stop. when you wish to stop hold ctrl and press "d"
+
+Note: I did not include a tree.h file as I have my binary tree and function associated with said tree set up inside of a class and which means I could not set up a tree.h. However the project requirements do not explicitly state I need a tree.h file. It simply says "put the above four functions into file tree.c/tree.h." I have those four fuctions in tree.c inside of my class BinarySearchTree.

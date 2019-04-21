@@ -1,0 +1,35 @@
+#411 name modified
+
+PATH=/bin:/usr/bin
+
+flag=$0
+#Loops till either it is successful or the user wants to stop
+while [ $? == 0 ]
+do
+grep -i "$*" <<EOF
+dial-a-joke (636) 976-3838
+dial-a-prayer (314) 246-4200
+dial santa (636) 976-3636
+dow jones report (212) 976-4141
+EOF
+
+input=$?
+	if [ $input == 1 ]
+	then
+		echo "Cannot find the name you are searching for."
+		echo "would you like to enter a name and search again?"
+		read -p "'yes or no (y or n), otherwise any other character to exit program: " answer
+		#Checks to see if the user wants to enter another name
+		if [ $answer == 'y' ]
+		then
+			read -p "enter the name you would like to search for again: " word
+			$flag $word
+			exit 0
+		else
+			echo "okay, terminating the program"
+			exit 1
+		fi
+	else
+		exit 0
+	fi
+done	
